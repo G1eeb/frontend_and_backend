@@ -1,10 +1,10 @@
 :root {
     --background: #0d1117;
     --background-content: #161b22;
-    --background-conten-block: #21262d;
+    --background-content-block: #21262d;
     --text: #e6edf3;
     --secondary-text: #8b949e;
-    /* --accent: #58a6ff; */
+    --price-text: #c92c2c;
     --accent: #1f6feb;
     --navigation: #132d55;
     --header-footer: #1a1f2c;
@@ -12,7 +12,7 @@
     --shadow-content-block: 0 4px 20px rgba(0, 0, 0, 0.4);
     --shadow-navigation: 0 0 10px rgba(88, 166, 255, 0.8);
     --shadow-skills: 0 3px 15px rgba(31, 111, 235, 0.4);
-    --shasow-skills-hover: 0 5px 25px rgba(31, 111, 235, 0.4);
+    --shasow-skills-hover: 0 5px 25px rgb(31, 113, 235);
 }
 
 /* Основные стили */
@@ -23,10 +23,25 @@ body {
     background-color: var(--background);
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
 }
 
 /* Хэдер, футер */
-header,
+header {
+    background-color: var(--header-footer);
+    text-align: center;
+    padding: 30px;
+    font-size: 25px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    box-shadow: var(--shadow-content-block);
+}
+
 footer {
     background-color: var(--header-footer);
     text-align: center;
@@ -34,21 +49,23 @@ footer {
     font-size: 25px;
     font-weight: 500;
     letter-spacing: 0.5px;
+    box-shadow: var(--shadow-content-block);
 }
 
 /* Меню навигации */
-#navigation {
+.navigation {
     list-style: none;
     padding: 25px 40px;
     max-width: 900px;
     margin: 0 auto;
     background-color: var(--navigation);
+    box-shadow: var(--shadow-content-block);
     display: flex;
     justify-content: center;
     gap: 40px;
 }
 
-#navigation li a {
+.navigation li a {
     color: var(--text);
     text-decoration: none;
     font-weight: 500;
@@ -56,17 +73,18 @@ footer {
     transition: all 0.2s ease;
 }
 
-#navigation li a:hover {
+.navigation li a:hover {
     color: var(--accent);
     transform: scale(10);
 }
 
 /* Контент */
-#content {
+.content {
     padding: 40px;
     max-width: 900px;
     margin: 0 auto;
     background: var(--background-content);
+    box-shadow: var(--shadow-content-block);
 }
 
 /* Главная страница */
@@ -75,12 +93,12 @@ footer {
     margin-bottom: 40px;
 }
 
-#title {
+#header {
     font-size: 40px;
     margin-bottom: 40px;
 }
 
-img {
+#author-img {
     height: 350px;
     width: 330px;
     border: 4px solid var(--accent);
@@ -102,7 +120,8 @@ img {
     padding: 20px;
     margin: 30px 0;
     font-size: 18px;
-    background-color: var(--background-conten-block);
+    letter-spacing: 0.3px;
+    background-color: var(--background-content-block);
     border-radius: 25px;
     border-left: 5px solid var(--accent);
     line-height: 1.6;
@@ -118,7 +137,7 @@ img {
 }
 
 #skill {
-    background-color: var(--background-conten-block);
+    background-color: var(--background-content-block);
     padding: 12px 25px;
     border-radius: 25px;
     font-weight: 600;
@@ -132,7 +151,6 @@ img {
     box-shadow: var(--shasow-skills-hover);
 }
 
-/* Опыт работы */
 #experience {
     margin-top: 50px;
 }
@@ -145,18 +163,18 @@ img {
 }
 
 .experience-card {
-    background-color: var(--background-conten-block);
+    background-color: var(--background-content-block);
     padding: 25px;
     margin: 20px 0;
     border-radius: 25px;
-    box-shadow: var();
     border-left: 5px solid var(--accent);
     box-shadow: var(--shadow-content-block);
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
 }
 
 .experience-card:hover {
     transform: translateX(8px);
+    box-shadow: -5px 0 5px var(--accent);
 }
 
 .experience-card h3 {
@@ -168,4 +186,132 @@ img {
 .experience-card p {
     line-height: 1.6;
     margin: 0;
+}
+
+/* Новости */
+.content h1 {
+    text-align: center;
+}
+
+.news-card {
+    background-color: var(--background-content-block);
+    padding: 25px;
+    margin: 40px 30px;
+    border-radius: 25px;
+    border-left: 5px solid var(--accent);
+    box-shadow: var(--shadow-content-block);
+    transition: transform 0.5s ease;
+}
+
+.news-card:hover {
+    transform: translateX(8px);
+    box-shadow: -5px 0 5px var(--accent);
+}
+
+.news-card h3 {
+    font-size: 20px;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+#author {
+    line-height: 1.6;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 200;
+}
+
+/* Товары */
+#product-grid {
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 750px;
+    margin: 0 auto;
+    place-items: center;
+}
+
+.product-card {
+    justify-content: center;
+    border: 4px solid var(--accent);
+    border-radius: 25px;
+    padding: 16px;
+    height: auto;
+    width: 300px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    background-color: var(--background-content-block);
+    transition: box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+    box-shadow: var(--shasow-skills-hover)
+}
+
+.product-img {
+    height: 250px;
+    width: 250px;
+    border-radius: 25px;
+}
+
+.product-name {
+    margin: 15px 0 6px 0;
+}
+
+.description {
+    font-style: italic;
+    color: var(--secondary-text);
+    margin-bottom: 30px;
+}
+
+.product-button {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+    margin: 15px auto;
+    margin-bottom: 6px;
+    padding: 10px 0px;
+    border-radius: 50px;
+    background-color: var(--accent);
+    transition: transform 0.3s ease;
+    box-shadow: var(--shadow-skills);
+    font-weight: bold;
+}
+
+.product-button:hover {
+    transform: translateY(-2px);
+}
+
+.price {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--price-text);
+}
+
+/* Контакты */
+.contacts {
+    text-align: center;
+    background-color: var(--background-content-block);
+    padding: 15px;
+    margin: 30px auto;
+    width: 600px;
+    border-radius: 25px;
+    border-left: 5px solid var(--accent);
+    box-shadow: var(--shadow-content-block);
+}
+
+#contact-us {
+    text-align: center;
+    padding: 15px;
+    background-color: var(--accent);
+    width: 150px;
+    margin: 50px auto 10px auto;
+    border-radius: 50px;
+    transition: transform 0.3s ease;
+}
+
+#contact-us:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--background-content-block);
 }

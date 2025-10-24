@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Товары</title>
     <link rel="stylesheet" href="style/styles.css">
 </head>
 <body>
     <header>Header</header>
 
     <main>
-        <ul>
+       <ul class="navigation">
             <li><a href="index.html">Главная</a></li>
             <li><a href="news.html">Новости</a></li>
             <li><a href="practices.html">Практики</a></li>
@@ -18,22 +18,45 @@
             <li><a href="contacts.html">Контакты</a></li>
         </ul>
         
-        <div>
-            <img src="" alt="">
-            <div>Название товара</div>
-            <div>Цена товара</div>
-        </div>
-        <div>
-            <img src="" alt="">
-            <div>Название товара</div>
-            <div>Цена товара</div>
-        </div>
-        <div>
-            <img src="" alt="">
-            <div>Название товара</div>
-            <div>Цена товара</div>
+        <div class="content">
+            <h1>Каталог товаров</h1>
+
+            <div id="product-grid">
+                <div class="product-card">
+                    <img class="product-img" src="images/product.png" alt="">
+                    <h3 class="product-name">Название товара</h3>
+                    <div class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, perspiciatis.</div>
+                    <div class="product-button">В корзину</div>
+                    <div class="price">1 000 000 ₽</div>
+                </div>
+
+                <div class="product-card">
+                    <img class="product-img" src="images/product.png" alt="">
+                    <h3 class="product-name">Название товара</h3>
+                    <div class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</div>
+                    <div class="product-button">В корзину</div>
+                    <div class="price">1 000 000 ₽</div>
+                </div>
+
+                <div class="product-card">
+                    <img class="product-img" src="images/product.png" alt="">
+                    <h3 class="product-name">Название товара</h3>
+                    <div class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</div>
+                    <div class="product-button">В корзину</div>
+                    <div class="price">1 000 000 ₽</div>
+                </div>
+
+                <div class="product-card">
+                    <img class="product-img" src="images/product.png" alt="">
+                    <h3 class="product-name">Название товара</h3>
+                    <div class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</div>
+                    <div class="product-button">В корзину</div>
+                    <div class="price">1 000 000 ₽</div>
+                </div>
+            </div>
         </div>
     </main>
+
     <footer>Footer</footer>
 </body>
 </html>
