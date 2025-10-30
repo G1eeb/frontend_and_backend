@@ -6,52 +6,58 @@
     <title>Главная страница</title>
     <link rel="stylesheet" href="style/styles.css">
 </head>
+
 <body>
-    <header>Header</header>
+    <header>
+        <h1>header</h1>
+        <nav id="navigation">
+            <ul class="nav-list">
+                <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
+                <li class="nav-item"><a class="nav-link" href="news.html">Новости</a></li>
+                <li class="nav-item"><a class="nav-link" href="goods.html">Товары</a></li>
+                <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <main>
-        <ul class="navigation">
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="news.html">Новости</a></li>
-            <li><a href="practices.html">Практики</a></li>
-            <li><a href="goods.html">Товары</a></li>
-            <li><a href="contacts.html">Контакты</a></li>
-        </ul>
+    <main class="content">
+        <article class="profile">
+            <h1>Информация об авторе</h1>
+            <img src="images/author.png" alt="Фотография автора">
+            <h2>Круцяк Глеб Романович</h2>
+            <p class="group">ЭФБО-06-24</p>
+        </article>
 
-        <div class="content">
-            <div id="profile">
-                <h1 id="header">Информация об авторе</h1>
-                <img id="author-img" src="images/author.png" alt="Picture">
-                <h2 id="name">Круцяк Глеб Романович</h2>
-                <p id="group">ЭФБО-06-24</p>
+        <p class="about-me"><b>Обо мне:</b> Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi exercitationem eaque non pariatur recusandae ipsum corrupti officiis, dolores necessitatibus consectetur voluptates maiores earum unde fuga suscipit facere repudiandae assumenda aut, libero rem repellendus, soluta odio!</p>
+
+        <section class="skills">
+            <h2>Мои навыки</h2>
+            <div class="skills-container">
+                <div class="skill">Навык 1</div>
+                <div class="skill">Навык 2</div>
+                <div class="skill">Навык 3</div>
+                <div class="skill">Навык 4</div>
             </div>
+        </section>
 
-            <p id="about-me"><b>Обо мне:</b> Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi exercitationem eaque non pariatur recusandae ipsum corrupti officiis, dolores necessitatibus consectetur voluptates maiores earum unde fuga suscipit facere repudiandae assumenda aut, libero rem repellendus, soluta odio!</p>
-            
-            <div id="skill-container">
-                <div id="skill">Навык 1</div>
-                <div id="skill">Навык 2</div>
-                <div id="skill">Навык 3</div>
-                <div id="skill">Навык 4</div>
-            </div>
+        <section class="experience">
+            <h2>Мой опыт работы</h2>
 
-            <div id="experience">
-                <h2>Мой опыт работы</h2>
+            <article class="experience-card">
+                <h3>Опыт 1</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, enim?</p>
+            </article>
 
-                <div class="experience-card">
-                    <h3>Опыт 1</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, enim?</p>
-                </div>
-                <div class="experience-card">
-                    <h3>Опыт 2</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste, expedita!</p>
-                </div>
-                <div class="experience-card">
-                    <h3>Опыт 3</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, accusamus.</p>
-                </div>
-            </div>
-        </div>
+            <article class="experience-card">
+                <h3>Опыт 2</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste, expedita!</p>
+            </article>
+
+            <article class="experience-card">
+                <h3>Опыт 3</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, accusamus.</p>
+            </article>
+        </section>
     </main>
 
     <footer>Footer</footer>
