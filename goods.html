@@ -1,62 +1,371 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Товары</title>
-    <link rel="stylesheet" href="/style/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --background: #0d1117;
+            --background-content: #161b22;
+            --background-content-block: #21262d;
+            --text: #e6edf3;
+            --secondary-text: #8b949e;
+            --price-text: #c92c2c;
+            --accent: #1f6feb;
+            --navigation: #132d55;
+            --header-footer: #1a1f2c;
+            --modal-window: #30363d;
+            --modal-header: #132d55;
+
+            --shadow-content-block: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --shadow-navigation: 0 0 10px rgba(88, 166, 255, 0.8);
+            --shadow-skills: 0 3px 15px rgba(31, 111, 235, 0.4);
+            --shadow-skills-hover: 0 5px 25px rgb(31, 113, 235);
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex-grow: 1;
+        }
+
+        /* Header */
+        .custom-header {
+            background-color: var(--header-footer);
+            padding: 30px 0;
+            box-shadow: var(--shadow-content-block);
+        }
+
+        .custom-header h1 {
+            font-size: 25px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .custom-header p {
+            font-size: 16px;
+            color: var(--secondary-text);
+            margin: 0;
+        }
+
+        .badge-custom {
+            background-color: var(--accent);
+            color: var(--text);
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        /* Navigation */
+        .custom-navbar {
+            background-color: var(--navigation);
+            padding: 0;
+            box-shadow: var(--shadow-content-block);
+        }
+
+        .custom-navbar .navbar-nav {
+            padding: 25px 0;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .custom-navbar .nav-link {
+            color: var(--text);
+            font-weight: 500;
+            padding: 12px 30px;
+            transition: all 0.2s ease;
+            border-radius: 25px;
+        }
+
+        .custom-navbar .nav-link:hover {
+            color: var(--accent);
+        }
+        
+        .custom-navbar .nav-link.active {
+            color: var(--accent);
+            background-color: rgba(31, 111, 235, 0.1);
+        }
+
+        .custom-navbar .navbar-toggler {
+            border-color: var(--accent);
+            margin: 15px;
+        }
+
+        .custom-navbar .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* Content */
+        .custom-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        /* Product Grid */
+        #product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+            place-items: center;
+        }
+
+        .product-card {
+            border: 4px solid var(--accent);
+            border-radius: 25px;
+            padding: 20px;
+            height: auto;
+            width: 100%;
+            max-width: 320px;
+            text-align: center;
+            background-color: var(--background-content-block);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            box-shadow: var(--shadow-skills-hover);
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            height: 200px;
+            width: 100%;
+            border-radius: 15px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .product-name {
+            margin: 15px 0 10px 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .description {
+            font-style: italic;
+            color: var(--secondary-text);
+            margin-bottom: 20px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .product-button {
+            display: flex;
+            justify-content: center;
+            width: 140px;
+            margin: 15px auto;
+            padding: 10px 0;
+            border-radius: 50px;
+            background-color: var(--accent);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-skills);
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .product-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-skills-hover);
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--price-text);
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        .custom-footer {
+            background-color: var(--header-footer);
+            padding: 30px 0;
+            box-shadow: var(--shadow-content-block);
+            margin-top: auto;
+        }
+
+        .custom-footer a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .custom-footer a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .custom-navbar .navbar-nav {
+                gap: 10px;
+                padding: 15px 0;
+            }
+            
+            .custom-navbar .nav-link {
+                padding: 10px 20px;
+            }
+            
+            .page-title {
+                font-size: 32px;
+            }
+            
+            #product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 992px) {
+            #product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>Header</header>
+    <div class="container-fluid p-0">
+        <!-- Header -->
+        <header class="custom-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h1>Мое портфолио</h1>
+                        <p>Студент разработчик</p>
+                    </div>
+                    <div class="col-auto">
+                        <span class="badge-custom">ЭФБО-06-24</span>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-    <main>
-       <ul class="navigation">
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="news.html">Новости</a></li>
-            <!-- <li><a href="practices.html">Практики</a></li> -->
-            <li><a href="goods.html">Товары</a></li>
-            <li><a href="contacts.html">Контакты</a></li>
-        </ul>
-        
-        <div class="content">
-            <h1>Каталог товаров</h1>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg custom-navbar">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">
+                                <i class="bi bi-house me-1"></i>Главная
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="news.html">
+                                <i class="bi bi-newspaper me-1"></i>Новости
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="goods.html">
+                                <i class="bi bi-cart me-1"></i>Товары
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contacts.html">
+                                <i class="bi bi-telephone me-1"></i>Контакты
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="custom-container">
+            <h1 class="page-title">Каталог товаров</h1>
 
             <div id="product-grid">
                 <div class="product-card">
-                    <img class="product-img" src="images/product.png" alt="">
-                    <h3 class="product-name">Название товара</h3>
-                    <div class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, perspiciatis.</div>
+                    <img class="product-img" src="images/product.png" alt="Курс по веб-разработке">
+                    <h3 class="product-name">Курс "Основы веб-разработки"</h3>
+                    <div class="description">Полный курс по основам HTML, CSS и JavaScript для начинающих разработчиков. Включает практические задания и проекты.</div>
                     <div class="product-button">В корзину</div>
                     <div class="price">1 000 000 ₽</div>
                 </div>
 
                 <div class="product-card">
-                    <img class="product-img" src="images/product.png" alt="">
-                    <h3 class="product-name">Название товара</h3>
-                    <div class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</div>
+                    <img class="product-img" src="images/product.png" alt="UI/UX дизайн">
+                    <h3 class="product-name">Гайд по UI/UX дизайну</h3>
+                    <div class="description">Подробное руководство по созданию удобных и современных интерфейсов. Примеры, шаблоны и лучшие практики.</div>
                     <div class="product-button">В корзину</div>
                     <div class="price">1 000 000 ₽</div>
                 </div>
 
                 <div class="product-card">
-                    <img class="product-img" src="images/product.png" alt="">
-                    <h3 class="product-name">Название товара</h3>
-                    <div class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</div>
+                    <img class="product-img" src="images/product.png" alt="React разработка">
+                    <h3 class="product-name">Продвинутый React</h3>
+                    <div class="description">Углубленный курс по React с hooks, context API, Redux и тестированием. Для разработчиков с базовыми знаниями.</div>
                     <div class="product-button">В корзину</div>
                     <div class="price">1 000 000 ₽</div>
                 </div>
 
                 <div class="product-card">
-                    <img class="product-img" src="images/product.png" alt="">
-                    <h3 class="product-name">Название товара</h3>
-                    <div class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</div>
+                    <img class="product-img" src="images/product.png" alt="Мобильная разработка">
+                    <h3 class="product-name">Мобильная разработка</h3>
+                    <div class="description">Создание кроссплатформенных мобильных приложений с использованием React Native. От основ до публикации в магазинах.</div>
+                    <div class="product-button">В корзину</div>
+                    <div class="price">1 000 000 ₽</div>
+                </div>
+
+                <div class="product-card">
+                    <img class="product-img" src="images/product.png" alt="Базы данных">
+                    <h3 class="product-name">Базы данных и SQL</h3>
+                    <div class="description">Комплексный курс по проектированию баз данных, SQL запросам и оптимизации. MongoDB, PostgreSQL и MySQL.</div>
+                    <div class="product-button">В корзину</div>
+                    <div class="price">1 000 000 ₽</div>
+                </div>
+
+                <div class="product-card">
+                    <img class="product-img" src="images/product.png" alt="DevOps основы">
+                    <h3 class="product-name">DevOps для разработчиков</h3>
+                    <div class="description">Основы DevOps: Docker, CI/CD, развертывание приложений. Практические навыки для современного разработчика.</div>
                     <div class="product-button">В корзину</div>
                     <div class="price">1 000 000 ₽</div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
 
-    <footer>Footer</footer>
+        <!-- Footer -->
+        <footer class="custom-footer">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="mb-0">&copy; 2024 Портфолио студента. Все права защищены.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="contacts.html" class="me-3">Контакты</a>
+                        <a href="#">Политика конфиденциальности</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

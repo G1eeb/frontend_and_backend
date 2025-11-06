@@ -1,59 +1,501 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная страница</title>
-    <link rel="stylesheet" href="/style/styles.css">
+    <title>Главная - Портфолио</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --background: #0d1117;
+            --background-content: #161b22;
+            --background-content-block: #21262d;
+            --text: #e6edf3;
+            --secondary-text: #8b949e;
+            --price-text: #c92c2c;
+            --accent: #1f6feb;
+            --navigation: #132d55;
+            --header-footer: #1a1f2c;
+            --modal-window: #30363d;
+            --modal-header: #132d55;
+
+            --shadow-content-block: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --shadow-navigation: 0 0 10px rgba(88, 166, 255, 0.8);
+            --shadow-skills: 0 3px 15px rgba(31, 111, 235, 0.4);
+            --shadow-skills-hover: 0 5px 25px rgb(31, 113, 235);
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex-grow: 1;
+        }
+
+        /* Header */
+        .custom-header {
+            background-color: var(--header-footer);
+            padding: 30px 0;
+            box-shadow: var(--shadow-content-block);
+        }
+
+        .custom-header h1 {
+            font-size: 25px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .custom-header p {
+            font-size: 16px;
+            color: var(--secondary-text);
+            margin: 0;
+        }
+
+        .badge-custom {
+            background-color: var(--accent);
+            color: var(--text);
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        /* Navigation */
+        .custom-navbar {
+            background-color: var(--navigation);
+            padding: 0;
+            box-shadow: var(--shadow-content-block);
+        }
+
+        .custom-navbar .navbar-nav {
+            padding: 25px 10px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .custom-navbar .nav-link {
+            color: var(--text);
+            font-weight: 500;
+            padding: 12px 30px;
+            transition: all 0.2s ease;
+            border-radius: 25px;
+        }
+
+        .custom-navbar .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .custom-navbar .nav-link.active {
+            color: var(--accent);
+            background-color: rgba(31, 111, 235, 0.1);
+        }
+
+        
+
+        .custom-navbar .navbar-toggler {
+            border-color: var(--accent);
+            margin: 15px;
+        }
+
+        .custom-navbar .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* Content */
+        .custom-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .custom-card {
+            background-color: var(--background-content-block);
+            border-radius: 25px;
+            border-left: 5px solid var(--accent);
+            box-shadow: var(--shadow-content-block);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .custom-card:hover {
+            transform: translateX(8px);
+            box-shadow: -5px 0 5px var(--accent);
+        }
+
+        .custom-card-header {
+            background-color: var(--background-content);
+            border-bottom: 1px solid var(--accent);
+            border-radius: 25px 25px 0 0;
+            padding: 20px 25px;
+        }
+
+        .custom-card-body {
+            padding: 25px;
+        }
+
+        .custom-card-title {
+            color: var(--text);
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+
+        .custom-card-text {
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Profile Section */
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+            border-radius: 50px;
+        }
+
+        .skill-badge {
+            background-color: var(--background-content);
+            color: var(--text);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: var(--shadow-skills);
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-skills-hover);
+        }
+
+        /* Progress Bars */
+        .progress {
+            background-color: var(--background-content);
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background-color: var(--accent);
+            border-radius: 10px;
+        }
+
+        /* Project Cards */
+        .project-card {
+            background-color: var(--background-content);
+            border-radius: 25px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 2px solid transparent;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-skills-hover);
+            border-color: var(--accent);
+        }
+
+        .project-img {
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .project-badge {
+            background-color: var(--accent);
+            color: var(--text);
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        /* Footer */
+        .custom-footer {
+            background-color: var(--header-footer);
+            padding: 30px 0;
+            box-shadow: var(--shadow-content-block);
+            margin-top: auto;
+        }
+
+        .custom-footer a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .custom-footer a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .custom-navbar .navbar-nav {
+                gap: 10px;
+                padding: 15px 0;
+            }
+
+            .custom-navbar .nav-link {
+                padding: 10px 20px;
+            }
+
+            .profile-img {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <header>Header</header>
-
-    <main>
-        <ul class="navigation">
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="news.html">Новости</a></li>
-            <!-- <li><a href="practices.html">Практики</a></li> -->
-            <li><a href="goods.html">Товары</a></li>
-            <li><a href="contacts.html">Контакты</a></li>
-        </ul>
-
-        <div class="content">
-            <div id="profile">
-                <h1 id="header">Информация об авторе</h1>
-                <img id="author-img" src="images/author.png" alt="Picture">
-                <h2 id="name">Круцяк Глеб Романович</h2>
-                <p id="group">ЭФБО-06-24</p>
-            </div>
-
-            <p id="about-me"><b>Обо мне:</b> Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi exercitationem eaque non pariatur recusandae ipsum corrupti officiis, dolores necessitatibus consectetur voluptates maiores earum unde fuga suscipit facere repudiandae assumenda aut, libero rem repellendus, soluta odio!</p>
-            
-            <div id="skill-container">
-                <div id="skill">Навык 1</div>
-                <div id="skill">Навык 2</div>
-                <div id="skill">Навык 3</div>
-                <div id="skill">Навык 4</div>
-            </div>
-
-            <div id="experience">
-                <h2>Мой опыт работы</h2>
-
-                <div class="experience-card">
-                    <h3>Опыт 1</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, enim?</p>
-                </div>
-                <div class="experience-card">
-                    <h3>Опыт 2</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste, expedita!</p>
-                </div>
-                <div class="experience-card">
-                    <h3>Опыт 3</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, accusamus.</p>
+    <div class="container-fluid p-0">
+        <!-- Header -->
+        <header class="custom-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h1>Мое портфолио</h1>
+                        <p>Студент разработчик</p>
+                    </div>
+                    <div class="col-auto">
+                        <span class="badge-custom">ЭФБО-06-24</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </header>
 
-    <footer>Footer</footer>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg custom-navbar">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">
+                                <i class="bi bi-house me-1"></i>Главная
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="news.html">
+                                <i class="bi bi-newspaper me-1"></i>Новости
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="goods.html">
+                                <i class="bi bi-cart me-1"></i>Товары
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contacts.html">
+                                <i class="bi bi-telephone me-1"></i>Контакты
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="custom-container">
+            <!-- Profile Section -->
+            <section class="mb-5">
+                <div class="custom-card">
+                    <div class="custom-card-body p-4">
+                        <div class="row align-items-center">
+                            <div class="col-md-3 text-center mb-3 mb-md-0">
+                                <img src="images/author.png" alt="Фото студента" class="profile-img">
+                            </div>
+                            <div class="col-md-9">
+                                <h2 class="custom-card-title h4">Круцяк Глеб Романович</h2>
+                                <p class="custom-card-text text-muted mb-2">
+                                    <i class="bi bi-bookmark-check-fill" style="color: var(--accent);"></i>
+                                    Студент группы ЭФБО-06-24
+                                </p>
+                                <p class="custom-card-text">
+                                    Факультет информационных технологий, специальность "Веб-разработка"
+                                </p>
+                                <div class="d-flex flex-wrap">
+                                    <span class="skill-badge">HTML/CSS</span>
+                                    <span class="skill-badge">JavaScript</span>
+                                    <span class="skill-badge">Bootstrap</span>
+                                    <span class="skill-badge">React</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="mb-5">
+                <div class="custom-card">
+                    <div class="custom-card-header">
+                        <h3 class="custom-card-title h5 mb-0">
+                            <i class="bi bi-person-circle me-2" style="color: var(--accent);"></i>
+                            Обо мне
+                        </h3>
+                    </div>
+                    <div class="custom-card-body">
+                        <p class="custom-card-text">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus nulla nesciunt nam repellat, tempore itaque, natus odit voluptatem ab eum est dolores, quibusdam ipsam suscipit modi ratione accusamus! Possimus, rem!
+                        </p>
+                        <p class="custom-card-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error suscipit doloremque reprehenderit cumque.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="mb-5">
+                <div class="custom-card">
+                    <div class="custom-card-header">
+                        <h3 class="custom-card-title h5 mb-0">
+                            <i class="bi bi-tools me-2" style="color: var(--accent);"></i>
+                            Мои навыки
+                        </h3>
+                    </div>
+                    <div class="custom-card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>HTML/CSS</span>
+                                        <span style="color: var(--accent);">90%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>JavaScript</span>
+                                        <span style="color: var(--accent);">75%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>Bootstrap</span>
+                                        <span style="color: var(--accent);">85%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>React</span>
+                                        <span style="color: var(--accent);">70%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 70%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="mb-5">
+                <div class="custom-card">
+                    <div class="custom-card-header">
+                        <h3 class="custom-card-title h5 mb-0">
+                            <i class="bi bi-folder-fill me-2" style="color: var(--accent);"></i>
+                            Мои проекты
+                        </h3>
+                    </div>
+                    <div class="custom-card-body">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="project-card">
+                                    <img src="images/project1.jpg" class="card-img-top project-img" alt="Личный сайт">
+                                    <div class="card-body p-3">
+                                        <h5 class="card-title">Личный сайт</h5>
+                                        <p class="card-text small text-muted">
+                                            Сайт-портфолио на HTML, CSS и Bootstrap с адаптивным дизайном.
+                                        </p>
+                                        <div class="mb-2">
+                                            <span class="badge project-badge">HTML</span>
+                                            <span class="badge project-badge">CSS</span>
+                                            <span class="badge project-badge">Bootstrap</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="project-card">
+                                    <img src="images/project2.jpg" class="card-img-top project-img"
+                                        alt="Todo приложение">
+                                    <div class="card-body p-3">
+                                        <h5 class="card-title">Todo приложение</h5>
+                                        <p class="card-text small text-muted">
+                                            Приложение для управления задачами с использованием JavaScript.
+                                        </p>
+                                        <div class="mb-2">
+                                            <span class="badge project-badge">JavaScript</span>
+                                            <span class="badge project-badge">LocalStorage</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="project-card">
+                                    <img src="images/project3.jpg" class="card-img-top project-img"
+                                        alt="Интернет-магазин">
+                                    <div class="card-body p-3">
+                                        <h5 class="card-title">Интернет-магазин</h5>
+                                        <p class="card-text small text-muted">
+                                            Прототип интернет-магазина с корзиной товаров и фильтрацией.
+                                        </p>
+                                        <div class="mb-2">
+                                            <span class="badge project-badge">React</span>
+                                            <span class="badge project-badge">API</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="custom-footer">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="mb-0">&copy; 2024 Портфолио студента. Все права защищены.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="contacts.html" class="me-3">Контакты</a>
+                        <a href="#">Политика конфиденциальности</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

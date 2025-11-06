@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style/styles.css">
+</head>
+
+<body>
+    <script src="/scripts/modal.js"></script>
+
+    <header>Header</header>
+
+    <main>
+        <ul class="navigation">
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="news.html">Новости</a></li>
+            <!-- <li><a href="practices.html">Практики</a></li> -->
+            <li><a href="goods.html">Товары</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+
+        <div class="content">
+            <h1>Наши контакты</h1>
+
+            <div class="contacts">
+                <h3>Телефон</h3>
+                <p>+7 (920) 126-08-37</p>
+            </div>
+
+            <div class="contacts">
+                <h3>Электронная почта</h3>
+                <p>gleb_krutsyak@mail.ru</p>
+            </div>
+
+            <div class="contacts">
+                <h3>Социальные сети</h3>
+                <p>Telegram, WhatsApp, VK</p>
+            </div>
+
+            <div id="contact-us" onclick="modal.showModal()">Связаться с нами</div>
+        </div>
+    </main>
+
+    <footer>Footer</footer>
+
+    <!-- Модальное окно -->
+    <dialog id="modal">
+        <div class="modal-header">
+            <h2>Форма обратной связи</h2>
+        </div>
+
+        <div class="modal-content">
+            <form id="feedbackForm" method="dialog">
+                <div class="form-group">
+                    <label for="name">Имя <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" required placeholder="Введите ваше имя">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Телефон <span class="required">*
+                        </span></label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+7 (XXX) XXX-XX-XX">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Электронная почта <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required placeholder="example@mail.ru">
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Категория обращения <span class="required">*</span></label>
+                    <select id="category" name="category" required>
+                        <option value="">Выберите категорию</option>
+                        <option value="technical">Техническая
+                            поддержка</option>
+                        <option value="commercial">Коммерческое
+                            предложение</option>
+                        <option value="cooperation">Сотрудничество</option>
+                        <option value="complaint">Жалоба</option>
+                        <option value="suggestion">Предложение</option>
+                        <option value="other">Другое</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Текст обращения <span class="required">*</span></label>
+                    <textarea id="message" name="message" required
+                        placeholder="Опишите вашу проблему или вопрос..."></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-secondary">Отмена</button>
+
+                    <button type="button" class="btn btn-primary" onclick="submitForm()">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+</body>
+
+</html>
