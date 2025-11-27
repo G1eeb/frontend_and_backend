@@ -1,371 +1,18 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Контакты</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <style>
-        :root {
-            --background: #0d1117;
-            --background-content: #161b22;
-            --background-content-block: #21262d;
-            --text: #e6edf3;
-            --secondary-text: #8b949e;
-            --price-text: #c92c2c;
-            --accent: #1f6feb;
-            --navigation: #132d55;
-            --header-footer: #1a1f2c;
-            --modal-window: #30363d;
-            --modal-header: #132d55;
-
-            --shadow-content-block: 0 4px 20px rgba(0, 0, 0, 0.4);
-            --shadow-navigation: 0 0 10px rgba(88, 166, 255, 0.8);
-            --shadow-skills: 0 3px 15px rgba(31, 111, 235, 0.4);
-            --shadow-skills-hover: 0 5px 25px rgb(31, 113, 235);
-        }
-
-        body {
-            background-color: var(--background);
-            color: var(--text);
-            font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        main {
-            flex-grow: 1;
-        }
-
-        /* Header */
-        .custom-header {
-            background-color: var(--header-footer);
-            padding: 30px 0;
-            box-shadow: var(--shadow-content-block);
-        }
-
-        .custom-header h1 {
-            font-size: 25px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            margin-bottom: 5px;
-        }
-
-        .custom-header p {
-            font-size: 16px;
-            color: var(--secondary-text);
-            margin: 0;
-        }
-
-        .badge-custom {
-            background-color: var(--accent);
-            color: var(--text);
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 20px;
-        }
-
-        /* Navigation */
-        .custom-navbar {
-            background-color: var(--navigation);
-            padding: 0;
-            box-shadow: var(--shadow-content-block);
-        }
-
-        .custom-navbar .navbar-nav {
-            padding: 25px 0;
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            width: 100%;
-        }
-
-        .custom-navbar .nav-link {
-            color: var(--text);
-            font-weight: 500;
-            padding: 12px 30px;
-            transition: all 0.2s ease;
-            border-radius: 25px;
-        }
-
-        .custom-navbar .nav-link:hover,
-        .custom-navbar .nav-link.active {
-            color: var(--accent);
-            background-color: rgba(31, 111, 235, 0.1);
-        }
-
-        .custom-navbar .navbar-toggler {
-            border-color: var(--accent);
-            margin: 15px;
-        }
-
-        .custom-navbar .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-        }
-
-        /* Content */
-        .custom-container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .page-title {
-            text-align: center;
-            font-size: 40px;
-            margin-bottom: 40px;
-            font-weight: 500;
-        }
-
-        /* Contacts */
-        .contacts {
-            text-align: center;
-            background-color: var(--background-content-block);
-            padding: 25px;
-            margin: 30px auto;
-            width: 100%;
-            max-width: 600px;
-            border-radius: 25px;
-            border-left: 5px solid var(--accent);
-            box-shadow: var(--shadow-content-block);
-            transition: transform 0.3s ease;
-        }
-
-        .contacts:hover {
-            transform: translateX(8px);
-            box-shadow: -5px 0 5px var(--accent);
-        }
-
-        .contacts h3 {
-            font-size: 20px;
-            margin: 0 0 15px 0;
-            font-weight: 600;
-        }
-
-        .contacts p {
-            line-height: 1.6;
-            margin: 0;
-            font-size: 18px;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 10px;
-        }
-
-        .social-icon {
-            font-size: 24px;
-            color: var(--text);
-            transition: all 0.3s ease;
-        }
-
-        .social-icon:hover {
-            color: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        #contact-us {
-            text-align: center;
-            padding: 15px 30px;
-            background-color: var(--accent);
-            width: 200px;
-            margin: 50px auto 10px auto;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            font-weight: 600;
-            box-shadow: var(--shadow-skills);
-        }
-
-        #contact-us:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-skills-hover);
-        }
-
-        /* Модальное окно */
-        dialog::backdrop {
-            background: rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.3s ease;
-        }
-
-        dialog {
-            border: none;
-            border-radius: 25px;
-            padding: 0;
-            box-shadow: var(--shadow-content-block);
-            background-color: var(--modal-window);
-            animation: slideIn 0.3s ease;
-            max-width: 500px;
-            width: 90vw;
-            max-height: 90vh;
-            overflow-y: auto;
-            color: var(--text);
-        }
-
-        .modal-header {
-            background: var(--modal-header);
-            padding: 1.5rem;
-            border-radius: 25px 25px 0 0;
-            margin: 0;
-        }
-
-        .modal-header h2 {
-            margin: 0;
-            font-size: 1.5rem;
-            text-align: center;
-        }
-
-        .modal-content {
-            padding: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            border-radius: 20px;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border-radius: 12px;
-            font-size: 1rem;
-            transition: border-color 0.1s ease;
-            box-sizing: border-box;
-            border: none;
-            background-color: var(--background-content);
-            color: var(--text);
-            box-shadow: var(--shadow-content-block);
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border: 3px solid var(--accent);
-            border-color: var(--accent);
-        }
-
-        .form-group textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .modal-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .btn-primary {
-            background-color: var(--accent);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-skills-hover);
-        }
-
-        .btn-secondary {
-            background-color: var(--background-content-block);
-        }
-
-        .btn-secondary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-content-block);
-        }
-
-        .required {
-            color: var(--price-text);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* Footer */
-        .custom-footer {
-            background-color: var(--header-footer);
-            padding: 30px 0;
-            box-shadow: var(--shadow-content-block);
-            margin-top: auto;
-        }
-
-        .custom-footer a {
-            color: var(--text);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .custom-footer a:hover {
-            color: var(--accent);
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .custom-navbar .navbar-nav {
-                gap: 10px;
-                padding: 15px 0;
-            }
-            
-            .custom-navbar .nav-link {
-                padding: 10px 20px;
-            }
-            
-            .page-title {
-                font-size: 32px;
-            }
-            
-            .modal-actions {
-                flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
+
 <body>
+    <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+    
     <div class="container-fluid p-0">
         <!-- Header -->
         <header class="custom-header">
@@ -416,32 +63,42 @@
         </nav>
 
         <!-- Main Content -->
-        <main class="custom-container">
+        <main id="main" class="custom-container">
             <h1 class="page-title">Наши контакты</h1>
 
-            <div class="contacts">
-                <h3><i class="bi bi-telephone-fill me-2"></i>Телефон</h3>
-                <p>+7 (920) 126-08-37</p>
-            </div>
+            <div class="contacts-area">
+                <div class="contacts-grid">
+                    <article class="contact-card">
+                        <h3><i class="bi bi-telephone-fill me-2" aria-hidden="true"></i>Телефон</h3>
+                        <p>+7 (920) 126-08-37</p>
+                    </article>
 
-            <div class="contacts">
-                <h3><i class="bi bi-envelope-fill me-2"></i>Электронная почта</h3>
-                <p>gleb_krutsyak@mail.ru</p>
-            </div>
+                    <article class="contact-card">
+                        <h3><i class="bi bi-envelope-fill me-2" aria-hidden="true"></i>Электронная почта</h3>
+                        <p>gleb_krutsyak@mail.ru</p>
+                    </article>
 
-            <div class="contacts">
-                <h3><i class="bi bi-share-fill me-2"></i>Социальные сети</h3>
-                <p>Telegram, WhatsApp, VK</p>
-                <div class="social-icons">
-                    <a href="#" class="social-icon"><i class="bi bi-telegram"></i></a>
-                    <a href="#" class="social-icon"><i class="bi bi-whatsapp"></i></a>
-                    <a href="#" class="social-icon"><i class="bi bi-vimeo"></i></a>
+                    <article class="contact-card">
+                        <h3><i class="bi bi-share-fill me-2" aria-hidden="true"></i>Социальные сети</h3>
+                        <p>Telegram, WhatsApp, VK</p>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon" aria-label="Telegram">
+                                <i class="bi bi-telegram"></i>
+                            </a>
+                            <a href="#" class="social-icon" aria-label="WhatsApp">
+                                <i class="bi bi-whatsapp"></i>
+                            </a>
+                            <a href="#" class="social-icon" aria-label="VK">
+                                <i class="bi bi-vimeo"></i>
+                            </a>
+                        </div>
+                    </article>
                 </div>
             </div>
 
-            <div id="contact-us" onclick="modal.showModal()">
-                <i class="bi bi-chat-dots me-2"></i>Связаться с нами
-            </div>
+            <button class="contact-button" onclick="modal.showModal()">
+                <i class="bi bi-chat-dots me-2" aria-hidden="true"></i>Связаться с нами
+            </button>
         </main>
 
         <!-- Footer -->
@@ -461,31 +118,37 @@
     </div>
 
     <!-- Модальное окно -->
-    <dialog id="modal">
+    <dialog id="modal" aria-labelledby="modal-title">
         <div class="modal-header">
-            <h2>Форма обратной связи</h2>
+            <h2 id="modal-title">Форма обратной связи</h2>
         </div>
 
         <div class="modal-content">
-            <form id="feedbackForm" method="dialog">
+            <form id="feedbackForm" method="dialog" novalidate>
                 <div class="form-group">
                     <label for="name">Имя <span class="required">*</span></label>
-                    <input type="text" id="name" name="name" required placeholder="Введите ваше имя">
+                    <input type="text" id="name" name="name" required placeholder="Введите ваше имя" 
+                           aria-describedby="name-error">
+                    <div id="name-error" class="error-message" role="alert">Пожалуйста, введите ваше имя</div>
                 </div>
                 
                 <div class="form-group">
                     <label for="phone">Телефон <span class="required">*</span></label>
-                    <input type="tel" id="phone" name="phone" required placeholder="+7 (XXX) XXX-XX-XX">
+                    <input type="tel" id="phone" name="phone" required placeholder="+7 (XXX) XXX-XX-XX"
+                           aria-describedby="phone-error">
+                    <div id="phone-error" class="error-message" role="alert">Пожалуйста, введите корректный номер телефона</div>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Электронная почта <span class="required">*</span></label>
-                    <input type="email" id="email" name="email" required placeholder="example@mail.ru">
+                    <input type="email" id="email" name="email" required placeholder="example@mail.ru"
+                           aria-describedby="email-error">
+                    <div id="email-error" class="error-message" role="alert">Пожалуйста, введите корректный email</div>
                 </div>
 
                 <div class="form-group">
                     <label for="category">Категория обращения <span class="required">*</span></label>
-                    <select id="category" name="category" required>
+                    <select id="category" name="category" required aria-describedby="category-error">
                         <option value="">Выберите категорию</option>
                         <option value="technical">Техническая поддержка</option>
                         <option value="commercial">Коммерческое предложение</option>
@@ -494,42 +157,61 @@
                         <option value="suggestion">Предложение</option>
                         <option value="other">Другое</option>
                     </select>
+                    <div id="category-error" class="error-message" role="alert">Пожалуйста, выберите категорию</div>
                 </div>
 
                 <div class="form-group">
                     <label for="message">Текст обращения <span class="required">*</span></label>
-                    <textarea id="message" name="message" required placeholder="Опишите вашу проблему или вопрос..."></textarea>
+                    <textarea id="message" name="message" required placeholder="Опишите вашу проблему или вопрос..."
+                              aria-describedby="message-error"></textarea>
+                    <div id="message-error" class="error-message" role="alert">Пожалуйста, введите текст обращения</div>
                 </div>
 
                 <div class="modal-actions">
                     <button type="button" class="btn btn-secondary" onclick="modal.close()">Отмена</button>
-                    <button type="button" class="btn btn-primary" onclick="submitForm()">Отправить</button>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
                 </div>
             </form>
         </div>
     </dialog>
 
     <script>
-        // Получаем модальное окно
+        // Получаем модальное окно и форму
         const modal = document.getElementById('modal');
+        const form = document.getElementById('feedbackForm');
+        
+        // Валидация формы
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitForm();
+        });
         
         // Функция для отправки формы
         function submitForm() {
-            const form = document.getElementById('feedbackForm');
-            const formData = new FormData(form);
-            
-            // Проверка заполнения обязательных полей
             let isValid = true;
-            const requiredFields = form.querySelectorAll('[required]');
+            const fields = form.querySelectorAll('[required]');
             
-            requiredFields.forEach(field => {
+            // Сброс предыдущих ошибок
+            fields.forEach(field => {
+                const formGroup = field.closest('.form-group');
+                formGroup.classList.remove('invalid');
+            });
+            
+            // Проверка полей
+            fields.forEach(field => {
                 if (!field.value.trim()) {
                     isValid = false;
-                    field.style.border = '2px solid var(--price-text)';
-                } else {
-                    field.style.border = 'none';
+                    const formGroup = field.closest('.form-group');
+                    formGroup.classList.add('invalid');
                 }
             });
+            
+            // Дополнительная валидация email
+            const emailField = document.getElementById('email');
+            if (emailField.value && !isValidEmail(emailField.value)) {
+                isValid = false;
+                emailField.closest('.form-group').classList.add('invalid');
+            }
             
             if (isValid) {
                 // Здесь обычно отправка данных на сервер
@@ -537,8 +219,18 @@
                 modal.close();
                 form.reset();
             } else {
-                alert('Пожалуйста, заполните все обязательные поля!');
+                // Фокусировка на первом невалидном поле
+                const firstInvalid = form.querySelector('.invalid input, .invalid select, .invalid textarea');
+                if (firstInvalid) {
+                    firstInvalid.focus();
+                }
             }
+        }
+        
+        // Функция проверки email
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
         }
         
         // Закрытие модального окна при клике вне его
@@ -547,7 +239,23 @@
                 modal.close();
             }
         });
+        
+        // Закрытие модального окна при нажатии Escape
+        modal.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                modal.close();
+            }
+        });
+        
+        // Сброс ошибок при вводе
+        form.addEventListener('input', (e) => {
+            if (e.target.hasAttribute('required')) {
+                const formGroup = e.target.closest('.form-group');
+                formGroup.classList.remove('invalid');
+            }
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
